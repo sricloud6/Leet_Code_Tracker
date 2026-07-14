@@ -1,28 +1,25 @@
-// Last updated: 14/07/2026, 14:20:18
+// Last updated: 14/07/2026, 14:26:28
 1class Solution {
-2    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-3        ListNode dummy = new ListNode();
-4        ListNode res = dummy;
-5        int total = 0, carry = 0;
+2    public int findMin(int[] nums) {
+3
+4        int left = 0;
+5        int right = nums.length - 1;
 6
-7        while (l1 != null || l2 != null || carry != 0) {
-8            total = carry;
-9
-10            if (l1 != null) {
-11                total += l1.val;
-12                l1 = l1.next;
+7        while (left < right) {
+8
+9            int mid = left + (right - left) / 2;
+10
+11            if (nums[mid] > nums[right]) {
+12                left = mid + 1;
 13            }
-14            if (l2 != null) {
-15                total += l2.val;
-16                l2 = l2.next;
-17            }
-18
-19            int num = total % 10;
-20            carry = total / 10;
-21            dummy.next = new ListNode(num);
-22            dummy = dummy.next;
-23        }
-24
-25        return res.next;        
-26    }
-27}
+14            else if (nums[mid] < nums[right]) {
+15                right = mid;
+16            }
+17            else {
+18                right--;
+19            }
+20        }
+21
+22        return nums[left];
+23    }
+24}
